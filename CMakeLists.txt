@@ -19,7 +19,11 @@ set (CPACK_PACKAGE_VERSION ${PROJECT_VERSION})
 
 option (WITH_GFLAGS "Use gflags" ON)
 option (WITH_THREADS "Enable multithreading support" ON)
-option (WITH_TLS "Enable Thread Local Storage (TLS) support" ON)
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+	option (WITH_TLS "Enable Thread Local Storage (TLS) support" OFF)
+else ()
+	option (WITH_TLS "Enable Thread Local Storage (TLS) support" ON)
+endif ()
 
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
